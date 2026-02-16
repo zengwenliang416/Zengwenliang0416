@@ -1,70 +1,120 @@
 import { motion } from 'framer-motion'
-import { projects } from '../data/content'
+import { projects, type Project } from '../data/content'
 import RevealOnScroll from './ui/RevealOnScroll'
-import SectionHeader from './SectionHeader'
 
-function FeaturedProject({ project, index }: { project: typeof projects[0]; index: number }) {
-  const isEven = index % 2 === 1
+function ProjectImage({ project }: { project: Project }) {
+  if (project.image) {
+    return (
+      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+    )
+  }
+  return (
+    <div className="w-full h-full relative overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{ background: `linear-gradient(135deg, ${project.gradient[0]}15, ${project.gradient[1]}08)` }}
+      />
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `radial-gradient(${project.gradient[0]}30 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
+        }}
+      />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full opacity-30 blur-[60px]"
+        style={{ background: `linear-gradient(135deg, ${project.gradient[0]}, ${project.gradient[1]})` }}
+      />
+      <div className="absolute bottom-6 right-6 font-mono text-xs opacity-20 text-text-primary">
+        {project.name}
+      </div>
+    </div>
+  )
+}
+
+function FeaturedCard({ project, index }: { project: Project; index: number }) {
+  const isReversed = index % 2 === 1
   return (
     <RevealOnScroll>
-      <div className={`grid grid-cols-1 md:grid-cols-12 gap-5 items-center ${isEven ? 'md:text-right' : ''}`}>
-        {/* Image placeholder */}
-        <motion.a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
-          className={`relative rounded-lg overflow-hidden bg-navy-light border border-green/5 aspect-video flex items-center justify-center text-5xl text-green/30 ${
-            isEven ? 'md:col-start-6 md:col-end-13 md:row-start-1' : 'md:col-start-1 md:col-end-8'
-          }`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-green/10 to-blue-400/5 hover:from-green/5 hover:to-blue-400/[0.02] transition-colors" />
-          {project.name.includes('mcp') ? '🤖' : '🔔'}
-        </motion.a>
-
-        {/* Info */}
-        <div className={`${isEven ? 'md:col-start-1 md:col-end-7 md:row-start-1' : 'md:col-start-7 md:col-end-13'} relative z-10`}>
-          <p className="font-mono text-[13px] text-green mb-2">Featured Project</p>
-          <h3 className="font-display text-[28px] font-bold text-lightest-slate mb-4 hover:text-green transition-colors">
-            <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
-          </h3>
-          <div className="bg-navy-light p-6 rounded-lg shadow-[0_10px_30px_-15px_rgba(2,12,27,0.7)] mb-4 text-[15px] leading-relaxed text-left">
-            {project.desc}
-            {project.stars && <strong className="text-green ml-2">★ {project.stars}</strong>}
-          </div>
-          <div className={`flex flex-wrap gap-3 font-mono text-[13px] text-light-slate mb-3 ${isEven ? 'md:justify-end' : ''}`}>
-            {project.tech.map((t) => <span key={t}>{t}</span>)}
-          </div>
-          <div className={`${isEven ? 'md:text-right' : ''}`}>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-light-slate text-xl hover:text-green transition-colors">↗</a>
+      <motion.a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden bg-dark-card border border-dark-border hover:border-${project.accent}/30 transition-all duration-500`}
+        whileHover={{ y: -4 }}
+      >
+        <div className={`aspect-[16/10] lg:aspect-auto ${isReversed ? 'lg:order-2' : ''}`}>
+          <div className="w-full h-full group-hover:scale-[1.03] transition-transform duration-700">
+            <ProjectImage project={project} />
           </div>
         </div>
-      </div>
+        <div className="p-8 lg:p-12 flex flex-col justify-center">
+          <div className="flex items-center gap-3 mb-4">
+            <span
+              className="w-2 h-2 rounded-full"
+              style={{ background: project.gradient[0] }}
+            />
+            <span className="text-text-muted text-xs font-mono uppercase tracking-widest">Featured</span>
+            {project.stars && (
+              <span className="ml-auto font-mono text-sm" style={{ color: project.gradient[0] }}>
+                {project.stars} ★
+              </span>
+            )}
+          </div>
+          <h3 className="font-display text-2xl lg:text-3xl font-bold text-text-primary mb-4 group-hover:text-gradient-multi transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-text-secondary text-[15px] leading-relaxed mb-6">{project.desc}</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="px-3 py-1 rounded-full text-xs font-mono border border-dark-border text-text-muted"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.a>
     </RevealOnScroll>
   )
 }
 
-function MiniCard({ project, delay }: { project: typeof projects[0]; delay: number }) {
+function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   return (
     <RevealOnScroll delay={delay}>
       <motion.a
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        whileHover={{ y: -8 }}
-        className="block bg-navy-light border border-green/5 rounded-lg p-7 min-h-[260px] flex flex-col hover:shadow-[0_20px_40px_rgba(2,12,27,0.5)] transition-shadow group"
-        style={{ perspective: '600px' }}
+        whileHover={{ y: -6 }}
+        className="group block rounded-2xl overflow-hidden bg-dark-card border border-dark-border hover:border-dark-border transition-all duration-500"
       >
-        <div className="flex justify-between items-center mb-6">
-          <span className="text-4xl text-green">📂</span>
-          <span className="text-light-slate text-lg hover:text-green transition-colors">↗</span>
+        <div className="aspect-[16/10] overflow-hidden">
+          <div className="w-full h-full group-hover:scale-[1.05] transition-transform duration-700">
+            <ProjectImage project={project} />
+          </div>
         </div>
-        <h3 className="font-display text-lg font-bold text-lightest-slate mb-3 group-hover:text-green transition-colors">
-          {project.name}
-        </h3>
-        <p className="text-sm leading-relaxed flex-1">{project.desc}</p>
-        <div className="flex flex-wrap gap-2.5 mt-5 font-mono text-xs text-light-slate">
-          {project.tech.map((t) => <span key={t}>{t}</span>)}
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-display text-lg font-bold text-text-primary group-hover:text-gradient-multi transition-colors">
+              {project.title}
+            </h3>
+            {project.stars && (
+              <span className="font-mono text-xs" style={{ color: project.gradient[0] }}>
+                {project.stars} ★
+              </span>
+            )}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">{project.desc}</p>
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((t) => (
+              <span key={t} className="px-2.5 py-0.5 rounded-full text-xs font-mono border border-dark-border text-text-muted">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </motion.a>
     </RevealOnScroll>
@@ -76,18 +126,31 @@ export default function Projects() {
   const others = projects.filter((p) => !p.featured)
 
   return (
-    <section id="projects" className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-10 py-24">
-      <SectionHeader num="03" title="Things I've Built" />
+    <section id="projects" className="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
+      <RevealOnScroll>
+        <div className="flex items-center gap-6 mb-16">
+          <h2 className="font-display text-[clamp(36px,5vw,56px)] font-bold text-text-primary">
+            Selected<br />
+            <span className="text-gradient-coral">Projects</span>
+          </h2>
+          <div className="flex-1 h-px bg-dark-border" />
+          <span className="text-text-muted font-mono text-sm">{projects.length} projects</span>
+        </div>
+      </RevealOnScroll>
 
-      <div className="flex flex-col gap-20 mb-12">
+      <div className="flex flex-col gap-8 mb-12">
         {featured.map((p, i) => (
-          <FeaturedProject key={p.name} project={p} index={i} />
+          <FeaturedCard key={p.name} project={p} index={i} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <RevealOnScroll className="mb-8">
+        <h3 className="font-display text-xl text-text-secondary">More Projects</h3>
+      </RevealOnScroll>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {others.map((p, i) => (
-          <MiniCard key={p.name} project={p} delay={i * 0.1} />
+          <ProjectCard key={p.name} project={p} delay={i * 0.08} />
         ))}
       </div>
     </section>

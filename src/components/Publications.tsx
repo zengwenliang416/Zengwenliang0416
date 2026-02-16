@@ -1,27 +1,38 @@
 import { motion } from 'framer-motion'
 import { publications } from '../data/content'
 import RevealOnScroll from './ui/RevealOnScroll'
-import SectionHeader from './SectionHeader'
 
 export default function Publications() {
   return (
-    <section id="papers" className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-10 py-24">
-      <SectionHeader num="04" title="Publications" />
-      <div className="flex flex-col gap-4">
+    <section id="papers" className="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
+      <RevealOnScroll>
+        <h2 className="font-display text-[clamp(36px,5vw,56px)] font-bold text-text-primary mb-16">
+          Research <span className="text-indigo">Papers</span>
+        </h2>
+      </RevealOnScroll>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {publications.map((pub, i) => (
           <RevealOnScroll key={pub.title} delay={i * 0.1}>
             <motion.div
-              whileHover={{ x: 6 }}
-              className="flex gap-5 items-start p-7 rounded-lg bg-navy-light border border-green/5 hover:border-green/15 transition-colors"
+              whileHover={{ y: -4, borderColor: 'rgba(108,99,255,0.3)' }}
+              className="p-8 rounded-2xl bg-dark-card border border-dark-border transition-colors group"
             >
-              <div className="flex-shrink-0 w-11 h-11 rounded-lg flex items-center justify-center bg-green-tint text-green text-lg">
-                📄
-              </div>
-              <div>
-                <h3 className="font-display text-[17px] font-bold text-lightest-slate mb-1.5">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-indigo-dim flex items-center justify-center text-indigo text-lg font-bold">
+                  P
+                </div>
+                <h3 className="font-display text-xl font-bold text-text-primary group-hover:text-indigo transition-colors">
                   {pub.title}
                 </h3>
-                <p className="text-sm leading-relaxed">{pub.desc}</p>
+              </div>
+              <p className="text-text-secondary text-[15px] leading-relaxed mb-5">{pub.desc}</p>
+              <div className="flex flex-wrap gap-2">
+                {pub.tags.map((tag) => (
+                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-mono border border-indigo/10 text-indigo/70">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </motion.div>
           </RevealOnScroll>

@@ -44,7 +44,7 @@ export default function TextScramble({ texts, className = '' }: Props) {
           if (!q.char || Math.random() < 0.28) {
             q.char = CHARS[Math.floor(Math.random() * CHARS.length)]
           }
-          output += `<span style="color:#64ffda;opacity:0.6">${q.char}</span>`
+          output += `<span style="color:#FF3C5F;opacity:0.6">${q.char}</span>`
         } else {
           output += q.from
         }

@@ -4,15 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: '#0a192f',
-        'navy-light': '#112240',
-        'navy-lighter': '#1d3461',
-        slate: '#8892b0',
-        'light-slate': '#a8b2d1',
-        'lightest-slate': '#ccd6f6',
-        white: '#e6f1ff',
-        green: '#64ffda',
-        'green-tint': 'rgba(100,255,218,0.1)',
+        dark: '#0A0A0A',
+        'dark-surface': '#141414',
+        'dark-card': '#1A1A1A',
+        'dark-border': '#262626',
+        coral: '#FF3C5F',
+        'coral-dim': 'rgba(255,60,95,0.12)',
+        lime: '#BEFF00',
+        'lime-dim': 'rgba(190,255,0,0.12)',
+        indigo: '#6C63FF',
+        'indigo-dim': 'rgba(108,99,255,0.12)',
+        'text-primary': '#FAFAFA',
+        'text-secondary': '#888888',
+        'text-muted': '#555555',
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'sans-serif'],
