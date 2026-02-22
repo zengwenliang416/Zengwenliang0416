@@ -1,51 +1,73 @@
-import { motion } from 'framer-motion'
-import { siteConfig } from '../data/content'
-import { useLocale } from '../i18n/LocaleContext'
-import RevealOnScroll from './ui/RevealOnScroll'
+import { siteConfig } from "../data/content";
+import { useLocale } from "../i18n/LocaleContext";
+import RevealOnScroll from "./ui/RevealOnScroll";
+import GlassSection from "./glass/GlassSection";
+import GlassButton from "./glass/GlassButton";
+
+const CONTACT_GRADIENT = `
+  radial-gradient(ellipse 70% 60% at 20% 90%, rgba(255,60,95,0.12) 0%, transparent 60%),
+  radial-gradient(ellipse 60% 50% at 80% 10%, rgba(52,199,89,0.08) 0%, transparent 55%),
+  radial-gradient(ellipse 50% 40% at 50% 50%, rgba(88,86,214,0.10) 0%, transparent 50%)
+`;
 
 export default function Contact() {
-  const { t } = useLocale()
-
+  const { t } = useLocale();
   return (
-    <section id="contact" className="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
-      <RevealOnScroll>
-        <div className="relative rounded-3xl bg-dark-card border border-dark-border p-12 md:p-20 overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full opacity-[0.06] pointer-events-none"
-            style={{ background: 'radial-gradient(circle, #FF3C5F, transparent 70%)' }} />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full opacity-[0.04] pointer-events-none"
-            style={{ background: 'radial-gradient(circle, #BEFF00, transparent 70%)' }} />
+    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+      {/* Section background gradient */}
+      <div
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{ background: CONTACT_GRADIENT }}
+        aria-hidden="true"
+      />
 
-          <p className="text-text-muted text-sm font-mono uppercase tracking-widest mb-6">{t.contact.eyebrow}</p>
-          <h2 className="font-display text-[clamp(36px,6vw,72px)] font-bold text-text-primary leading-[1.1] mb-8">
-            {t.contact.heading[0]}<br />
-            <span className="text-gradient-multi">{t.contact.heading[1]}</span>
-          </h2>
-          <p className="text-text-secondary text-lg max-w-[480px] mb-10">
-            {t.contact.description}
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <motion.a
-              href={`mailto:${siteConfig.email}`}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-3.5 rounded-full bg-coral text-dark font-semibold text-sm hover:bg-coral/90 transition-colors"
-            >
-              {t.contact.emailBtn}
-            </motion.a>
-            <motion.a
-              href={siteConfig.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-3.5 rounded-full border border-dark-border text-text-primary text-sm hover:border-text-muted transition-colors"
-            >
-              {t.contact.githubBtn}
-            </motion.a>
-          </div>
-        </div>
-      </RevealOnScroll>
+      <div className="max-w-4xl mx-auto">
+        <RevealOnScroll>
+          <GlassSection preset="cta" className="w-full">
+            <div className="p-12 md:p-20 text-center">
+              <p className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted mb-6">
+                {t.contact.eyebrow}
+              </p>
+
+              <h2
+                className="font-display font-bold text-text-primary mb-4"
+                style={{ fontSize: "clamp(32px, 5vw, 56px)" }}
+              >
+                {t.contact.heading[0]}
+                <br />
+                <span className="text-gradient-multi">
+                  {t.contact.heading[1]}
+                </span>
+              </h2>
+
+              <p className="text-[16px] font-medium text-text-secondary leading-[1.65] max-w-xl mx-auto mb-10">
+                {t.contact.description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                {/* Primary CTA — solid coral */}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="px-8 py-4 rounded-full bg-coral text-white text-base font-semibold min-h-[44px] flex items-center gap-2 hover:bg-coral/90 transition-colors glass-interactive"
+                >
+                  {t.contact.emailBtn}
+                </a>
+
+                {/* Secondary — glass button */}
+                <GlassButton
+                  variant="secondary"
+                  href={siteConfig.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 text-base font-semibold text-text-primary"
+                >
+                  {t.contact.githubBtn}
+                </GlassButton>
+              </div>
+            </div>
+          </GlassSection>
+        </RevealOnScroll>
+      </div>
     </section>
-  )
+  );
 }

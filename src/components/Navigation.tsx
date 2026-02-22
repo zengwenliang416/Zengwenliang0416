@@ -1,65 +1,58 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { siteConfig } from '../data/content'
-import { useLocale } from '../i18n/LocaleContext'
+import { useState, useEffect } from "react";
+import { siteConfig } from "../data/content";
+import { useLocale } from "../i18n/LocaleContext";
+import GlassNav from "./glass/GlassNav";
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false)
-  const { locale, setLocale, t } = useLocale()
+  const [scrolled, setScrolled] = useState(false);
+  const { locale, setLocale, t } = useLocale();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const handler = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-dark/90 backdrop-blur-xl border-b border-dark-border' : ''
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-12 py-5">
-        <a href="#" className="font-display font-bold text-xl text-text-primary hover:text-coral transition-colors">
+    <GlassNav scrolled={scrolled}>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a
+          href="#"
+          className="font-display font-black text-lg tracking-tight hover:text-coral transition-colors"
+          style={{ color: "#1C1C1E" }}
+        >
           WZ<span className="text-coral">.</span>
         </a>
 
-        <div className="flex items-center gap-8">
-          {t.nav.links.map((link, i) => (
-            <motion.a
+        <nav className="hidden md:flex items-center gap-1">
+          {t.nav.links.map((link) => (
+            <a
               key={link.href}
               href={link.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * i + 0.3 }}
-              className="text-text-secondary text-sm hover:text-text-primary transition-colors hidden md:block"
+              className="relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 glass-interactive"
+              style={{ color: "#3A3A3C" }}
             >
               {link.label}
-            </motion.a>
+            </a>
           ))}
-          <motion.button
-            onClick={() => setLocale(locale === 'en' ? 'zh' : 'en')}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75 }}
-            className="px-3 py-1 rounded-full border border-dark-border text-text-secondary text-sm font-semibold hover:border-coral/30 hover:text-text-primary transition-colors"
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setLocale(locale === "en" ? "zh" : "en")}
+            className="text-xs font-mono text-text-muted hover:text-text-primary transition-colors glass-interactive px-2 py-1"
           >
-            {locale === 'en' ? '中' : 'EN'}
-          </motion.button>
-          <motion.a
+            {locale === "en" ? "中" : "EN"}
+          </button>
+
+          <a
             href={`mailto:${siteConfig.email}`}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="px-5 py-2 rounded-full bg-coral text-dark text-sm font-semibold hover:bg-coral/90 transition-colors"
+            className="px-4 py-2 rounded-full bg-coral text-white text-sm font-semibold hover:bg-coral/90 transition-colors min-h-[44px] flex items-center"
           >
             {t.nav.contact}
-          </motion.a>
+          </a>
         </div>
       </div>
-    </motion.nav>
-  )
+    </GlassNav>
+  );
 }
