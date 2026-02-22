@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --accent-dark: #0d0d0f;
+  }
+
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -59,8 +63,13 @@
     0 0 0 0.5px rgba(0, 0, 0, 0.04),
     0 2px 8px rgba(0, 0, 0, 0.04),
     0 8px 32px rgba(0, 0, 0, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition:
+    background-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   contain: layout style;
 }
 .glass-card:hover {
@@ -69,9 +78,30 @@
   box-shadow:
     0 0 0 0.5px rgba(0, 0, 0, 0.06),
     0 4px 16px rgba(0, 0, 0, 0.06),
-    0 16px 48px rgba(0, 0, 0, 0.1),
+    0 16px 48px rgba(0, 0, 0, 0.16),
+    0 32px 80px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
+}
+
+/* Featured glass card variant */
+.glass-card-featured {
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 0 40px rgba(255, 255, 255, 0.15);
+}
+.glass-card-featured:hover {
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 16px 48px rgba(0, 0, 0, 0.16),
+    0 32px 80px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 40px rgba(255, 255, 255, 0.15);
 }
 
 /* Glass nav bar */
@@ -246,7 +276,7 @@
 
 /* Reduced transparency */
 @media (prefers-reduced-transparency: reduce) {
-  .glass-card-fallback {
+  .glass-card {
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: none;
   }
@@ -254,7 +284,7 @@
 
 /* No backdrop-filter support */
 @supports not (backdrop-filter: blur(1px)) {
-  .glass-card-fallback {
+  .glass-card {
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }

@@ -14,6 +14,7 @@ export default {
         "lime-dim": "rgba(52,199,89,0.10)",
         indigo: "#5856D6",
         "indigo-dim": "rgba(88,86,214,0.10)",
+        "accent-dark": "#0D0D0F",
         "text-primary": "#1C1C1E",
         "text-secondary": "#3A3A3C",
         "text-muted": "#8E8E93",

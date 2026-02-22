@@ -5,10 +5,9 @@ const BLOBS = [
     top: "2%",
     right: "-8%",
     background:
-      "radial-gradient(ellipse, rgba(255,60,95,0.18) 0%, transparent 70%)",
+      "radial-gradient(ellipse, rgba(255,60,95,0.28) 0%, transparent 70%)",
     filter: "blur(80px)",
-    animation: "float 25s ease-in-out infinite",
-    willChange: "transform" as const,
+    animation: "float 20s ease-in-out infinite",
   },
   {
     width: "50vw",
@@ -16,10 +15,9 @@ const BLOBS = [
     top: "35%",
     left: "-10%",
     background:
-      "radial-gradient(ellipse, rgba(88,86,214,0.15) 0%, transparent 70%)",
+      "radial-gradient(ellipse, rgba(88,86,214,0.24) 0%, transparent 70%)",
     filter: "blur(90px)",
     animation: "float 30s ease-in-out infinite reverse",
-    willChange: "transform" as const,
   },
   {
     width: "40vw",
@@ -27,11 +25,10 @@ const BLOBS = [
     bottom: "8%",
     left: "25%",
     background:
-      "radial-gradient(ellipse, rgba(52,199,89,0.12) 0%, transparent 70%)",
+      "radial-gradient(ellipse, rgba(52,199,89,0.20) 0%, transparent 70%)",
     filter: "blur(90px)",
     animation: "float 35s ease-in-out infinite",
     animationDelay: "5s",
-    willChange: "transform" as const,
   },
   {
     width: "30vw",
@@ -43,7 +40,6 @@ const BLOBS = [
     filter: "blur(100px)",
     animation: "float 28s ease-in-out infinite",
     animationDelay: "8s",
-    willChange: "transform" as const,
   },
   {
     width: "35vw",
@@ -55,9 +51,30 @@ const BLOBS = [
     filter: "blur(100px)",
     animation: "float 32s ease-in-out infinite reverse",
     animationDelay: "12s",
-    willChange: "transform" as const,
   },
-] as const;
+  {
+    width: "38vw",
+    height: "32vh",
+    bottom: "5%",
+    left: "-5%",
+    background:
+      "radial-gradient(ellipse, rgba(255,180,50,0.12) 0%, transparent 70%)",
+    filter: "blur(100px)",
+    animation: "float 15s ease-in-out infinite",
+    animationDelay: "3s",
+  },
+  {
+    width: "36vw",
+    height: "28vh",
+    top: "-4%",
+    left: "30%",
+    background:
+      "radial-gradient(ellipse, rgba(0,210,220,0.12) 0%, transparent 70%)",
+    filter: "blur(90px)",
+    animation: "float 15s ease-in-out infinite reverse",
+    animationDelay: "6s",
+  },
+];
 
 export default function BackgroundLayer() {
   return (
