@@ -3,9 +3,10 @@ import type { LocaleContent } from "./types";
 export const zh: LocaleContent = {
   nav: {
     links: [
+      { label: "关于", href: "#about" },
+      { label: "专业", href: "#expertise" },
       { label: "项目", href: "#projects" },
-      { label: "技术栈", href: "#stack" },
-      { label: "论文", href: "#papers" },
+      { label: "论文", href: "#publications" },
       { label: "联系", href: "#contact" },
     ],
     contact: "联系我",
@@ -13,6 +14,8 @@ export const zh: LocaleContent = {
   hero: {
     greeting: "你好，我是",
     chineseName: "曾文亮",
+    lines: ["FULL STACK", "DEVELOPER &", "AI TOOL", "BUILDER"],
+    scrollHint: "滚动探索",
     roles: ["全栈开发者", "AI 工具构建者", "开源创作者"],
     description: "构建 AI 驱动的工具与生产级应用，连接学术研究与工程实践。",
     stats: [
@@ -21,6 +24,24 @@ export const zh: LocaleContent = {
       { value: 6, suffix: "", label: "编程语言" },
       { value: 2, suffix: "", label: "学术论文" },
     ],
+  },
+  intro: {
+    heading: "关于我",
+    bio: "一名热爱开源的全栈开发者和 AI 工具构建者。我将学术研究与生产工程相结合，创造赋能开发者、突破可能性边界的工具。",
+  },
+  achievementsSection: {
+    heading: "成就",
+    total: "总计",
+  },
+  expertiseSection: {
+    heading: "专业领域",
+    description:
+      "将 AI 研究与生产工程跨学科融合——从图神经网络到全栈 Web 应用。",
+  },
+  cta: {
+    heading: "准备好一起创造些什么了吗？",
+    button: "联系我吧！！",
+    marqueeText: "继续滚动",
   },
   projects: {
     heading: ["精选", "项目"],
@@ -87,6 +108,10 @@ export const zh: LocaleContent = {
   footer: {
     builtBy: "由",
     builtBySuffix: " 构建",
+    address: "中国",
+    newsletter: "联系方式",
+    newsletterPlaceholder: "您的邮箱",
+    copyright: "©2025 曾文亮",
   },
   meta: {
     title: "曾文亮 - 全栈开发者 & AI 工具构建者",

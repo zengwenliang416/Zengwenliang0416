@@ -139,3 +139,78 @@ export const publications = [
     tags: ["GCN", "Protein", "Drug Discovery"],
   },
 ];
+
+export interface AchievementCategory {
+  platform: string;
+  items: string[];
+  total: number;
+}
+
+export const achievements: AchievementCategory[] = [
+  {
+    platform: "Open Source",
+    items: ["43+ Repos", "80+ Stars", "8+ Tools", "MCP Ecosystem"],
+    total: 43,
+  },
+  {
+    platform: "Academic",
+    items: ["IEEE/ACM TCBB", "Elsevier BSPC"],
+    total: 2,
+  },
+  {
+    platform: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "Swift", "Rust", "Java"],
+    total: 6,
+  },
+];
+
+export const totalAchievements = 51;
+
+export interface ExpertiseCategory {
+  title: string;
+  items: string[];
+}
+
+export const expertise: ExpertiseCategory[] = [
+  {
+    title: "AI & Machine Learning",
+    items: [
+      "PyTorch",
+      "Graph Neural Networks",
+      "Deep Learning",
+      "MCP Protocol",
+      "LLM Integration",
+    ],
+  },
+  {
+    title: "Full Stack Development",
+    items: [
+      "React",
+      "Vue 3",
+      "Node.js",
+      "FastAPI",
+      "Spring Boot",
+      "TailwindCSS",
+    ],
+  },
+  {
+    title: "Developer Tooling",
+    items: [
+      "MCP Servers",
+      "CLI Tools",
+      "Browser Extensions",
+      "VS Code Plugins",
+      "Automation",
+    ],
+  },
+  {
+    title: "Research & Data",
+    items: [
+      "Drug Discovery",
+      "Bioinformatics",
+      "Graph Convolution",
+      "Data Pipelines",
+      "Academic Publishing",
+    ],
+  },
+];

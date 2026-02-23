@@ -3,15 +3,18 @@ import type { LocaleContent } from "./types";
 export const en: LocaleContent = {
   nav: {
     links: [
+      { label: "About", href: "#about" },
+      { label: "Expertise", href: "#expertise" },
       { label: "Projects", href: "#projects" },
-      { label: "Stack", href: "#stack" },
-      { label: "Papers", href: "#papers" },
+      { label: "Papers", href: "#publications" },
       { label: "Contact", href: "#contact" },
     ],
-    contact: "Contact",
+    contact: "Let's talk",
   },
   hero: {
     greeting: "Hello, I'm",
+    lines: ["FULL STACK", "DEVELOPER &", "AI TOOL", "BUILDER"],
+    scrollHint: "SCROLL TO EXPLORE",
     roles: [
       "Full-Stack Developer",
       "AI Tooling Builder",
@@ -25,6 +28,24 @@ export const en: LocaleContent = {
       { value: 6, suffix: "", label: "Languages" },
       { value: 2, suffix: "", label: "Publications" },
     ],
+  },
+  intro: {
+    heading: "ABOUT ME",
+    bio: "A full-stack developer and AI tooling builder with a passion for open source. I bridge academic research with production engineering, creating tools that empower developers and push the boundaries of what's possible.",
+  },
+  achievementsSection: {
+    heading: "Achievements",
+    total: "Total",
+  },
+  expertiseSection: {
+    heading: "AREA OF EXPERTISE",
+    description:
+      "Bridging AI research with production engineering across multiple disciplines — from graph neural networks to full-stack web applications.",
+  },
+  cta: {
+    heading: "Ready to Build Something Together?",
+    button: "Get in touch!!",
+    marqueeText: "CONTINUE TO SCROLL",
   },
   projects: {
     heading: ["Selected", "Projects"],
@@ -92,6 +113,10 @@ export const en: LocaleContent = {
   footer: {
     builtBy: "Built by",
     builtBySuffix: "",
+    address: "China",
+    newsletter: "Get in touch",
+    newsletterPlaceholder: "Your email",
+    copyright: "©2025 Wenliang Zeng",
   },
   meta: {
     title: "Wenliang Zeng - Full-Stack Developer & AI Tooling Builder",

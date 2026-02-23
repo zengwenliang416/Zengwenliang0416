@@ -8,9 +8,28 @@ export interface LocaleContent {
   hero: {
     greeting: string;
     chineseName?: string;
+    lines: string[];
+    scrollHint: string;
     roles: string[];
     description: string;
     stats: { value: number; suffix: string; label: string }[];
+  };
+  intro: {
+    heading: string;
+    bio: string;
+  };
+  achievementsSection: {
+    heading: string;
+    total: string;
+  };
+  expertiseSection: {
+    heading: string;
+    description: string;
+  };
+  cta: {
+    heading: string;
+    button: string;
+    marqueeText: string;
   };
   projects: {
     heading: [string, string];
@@ -37,6 +56,10 @@ export interface LocaleContent {
   footer: {
     builtBy: string;
     builtBySuffix: string;
+    address: string;
+    newsletter: string;
+    newsletterPlaceholder: string;
+    copyright: string;
   };
   meta: {
     title: string;
