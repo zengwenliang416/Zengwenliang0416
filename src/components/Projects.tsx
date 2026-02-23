@@ -389,7 +389,7 @@ export default function Projects() {
         <RevealOnScroll delay={0.5}>
           <div className="mt-12 text-center">
             <a
-              href="https://github.com/Zengwenliang0416"
+              href="https://github.com/zengwenliang416"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors glass-interactive"
